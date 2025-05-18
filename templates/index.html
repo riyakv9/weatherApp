@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="center-box">
+        <div class="container">
+            <h1>🌤 Weather Forecast</h1>
+            <form method="POST">
+                <input type="text" name="city" placeholder="Enter city name" required>
+                <button type="submit">Search</button>
+            </form>
+
+            {% if weather %}
+            <div class="weather-card">
+                <h2>{{ weather.location.name }}, {{ weather.location.country }}</h2>
+                <img src="{{ weather.current.condition.icon }}" alt="Icon">
+                <p class="temp">{{ weather.current.temp_c }}°C</p>
+                <p>{{ weather.current.condition.text }}</p>
+                <p>💧 Humidity: {{ weather.current.humidity }}%</p>
+                <p>🌬 Wind: {{ weather.current.wind_kph }} kph</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
